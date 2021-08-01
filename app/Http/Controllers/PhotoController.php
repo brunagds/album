@@ -20,6 +20,11 @@ class PhotoController extends Controller
     return view('/pages/home', ['photos' => $photos]);
   }
 
+public function showAll(){
+  $photos = Photo::all();
+  return view('/pages/photo_list',['photos' => $photos]);
+}
+
   /**
    * Show the form for creating a new resource.
    *
@@ -74,7 +79,7 @@ class PhotoController extends Controller
   public function edit($id)
   {
     $photo = Photo::findOrFail($id);
-    return view('/pages/photo_form', ['photo' => $photo]);
+    return view('/pages/photo_form', ['photo'=>$photo]);
   }
 
   /**
@@ -87,7 +92,7 @@ class PhotoController extends Controller
   public function update(Request $request, $id)
   {
     //retorna a foto no banco de dados
-    $photo = Photo::FindOrFail($request->$id);
+    $photo = Photo::FindOrFail($request->id);
 
     //Alterando os atributos do objeto
     $photo->title = $request->title;
@@ -97,8 +102,9 @@ class PhotoController extends Controller
 
     //Alterando no banco de dados
     $photo->update();
+
     //Rediricionar para a página principal
-    return redirect('/');
+    return redirect('/photos');
   }
 
   /**
