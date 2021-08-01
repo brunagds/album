@@ -15,12 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Rota pagina inicial
-Route::get('/', [PhotoController::class,'index']);
+Route::get('/', [PhotoController::class, 'index']);
 //Rota que exibe o formulário de cadastro
 Route::get('/photos/new', [PhotoController::class, 'create']);
 
+//Rota que exibe o formulário de edição
+Route::get('/photos/edit/{id}', [PhotoController::class, 'edit']);
+
 //Rota que insere no banco de dados uma nova foto
-Route::post('/photos',[PhotoController::class,'store']);
+Route::post('/photos', [PhotoController::class, 'store']);
+
+//Rota que altera uma foto no banco de dados
+Route::put('/photos/{id}', [PhotoController::class, 'update']);
 
 
 
