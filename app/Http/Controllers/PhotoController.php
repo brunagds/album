@@ -115,6 +115,10 @@ public function showAll(){
    */
   public function destroy($id)
   {
-    //
+    //retorna a foto no banco de dados
+    Photo::FindOrFail($id)->delete();
+
+    //redireciona para a lista de fotos
+    return redirect('/photos');
   }
 }
