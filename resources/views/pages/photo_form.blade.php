@@ -17,12 +17,12 @@
         <div class="card-body p-4">
           <!-- Form -->
           @if (isset($photo))
-            <form action="/photos/{{$photo->id}}" method="POST">
+          <form action="/photos/{{$photo->id}}" method="POST">
             @method('PUT')
-          @else
-            <form action="/photos" method="POST">
-          @endif
-          @csrf
+            @else
+            <form action="/photos" method="POST" enctype="multipart/form-data">
+              @endif
+              @csrf
 
               <div class="row">
                 <!-- Coluna da foto -->
@@ -30,11 +30,14 @@
                   <div class="d-flex flex-column h-100">
                     <div
                       class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
-                      <i class="far fa-image"></i> <br> <small> </small>
+
+                      <img id="imgPrev" class="img-fluid"
+                        src="https://www.osmais.com/wallpapers/201209/dia-de-chuva-wallpaper.jpg" />
                     </div>
                     <div class="form-group mt-2">
-                      <div class="custom-file"> <input type="file" class="custom-file-input" id="customFile"> <label
-                          class="custom-file-label" for="customFile">Nenhum arquivo selecionado</label> </div>
+                      <div class="custom-file"> <input id="photo" name="photo" type="file" class="custom-file-input"
+                          onchange="loadFile(event)">
+                      </div>
                     </div>
                   </div>
                 </div><!-- fim da coluna da foto -->
@@ -59,8 +62,9 @@
                       placeholder="Digite uma pequena descrição da imagem">{{$photo->description ?? null }}</textarea>
                   </div> <!-- Botões -->
                   <div class="form-group d-flex mt-3"> <button name="submit" type="reset"
-                      class="btn btn-laranja flex-grow-1 me-2">Limpar</button> <button name="submit" type="submit"
-                      class="btn btn-primary flex-grow-1">Salvar</button> </div>
+                      class="btn btn-laranja flex-grow-1 me-2">Limpar</button>
+                    <button name="submit" type="submit" class="btn btn-primary flex-grow-1">Salvar</button>
+                  </div>
                 </div><!-- fim coluna das inputs-->
               </div><!-- fim da row -->
             </form><!-- fim do form -->
@@ -69,5 +73,20 @@
     </div><!-- fim da coluna card-form -->
   </div><!-- fim da row -->
 </div><!-- fim da container-->
+
+
+
+<script>  function loadFile(event){
+  //variável que recebe o elemento img
+  var imgPrev = document.getElementById('imgPrev')
+
+  //link para a imagem
+  var url = URL.createObjectURL(event.target.files[0])
+
+  //altera a propriedade src para o link da imagem
+  imgPrev.style.background = "url("+url+") no-repeat center"
+  imgPrev.style.backgroundSize = "cover"
+  }
+</script>
 
 @endsection
