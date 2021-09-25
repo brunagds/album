@@ -1,3 +1,6 @@
+
+/* Modal */
+
 //variavel que recebe o elemento html(modal)
 var exampleModal = document.getElementById('confirmationModal')
 
@@ -13,3 +16,16 @@ var exampleModal = document.getElementById('confirmationModal')
     //alterando o Action(rota) do formulario
     form.action = "/photos/"+ button.getAttribute('data-photo-id')
   })
+
+  /*Carregar Imagem*/
+
+  function loadFile(event){
+    //variável que recebe o elemento img
+    var imgPrev = document.getElementById('imgPrev')
+
+    //link para a imagem
+    var url = URL.createObjectURL(event.target.files[0])
+
+    //altera a propriedade src para o link da imagem
+    imgPrev.src = url
+    }

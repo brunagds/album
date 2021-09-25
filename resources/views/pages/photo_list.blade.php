@@ -27,8 +27,8 @@
               @foreach ($photos as $photo)
               <tr>
                 <td>{{$photo->id}}</td>
-                <td><img width="200" class="img-thumbnail"
-                    src="https://www.osmais.com/wallpapers/201209/dia-de-chuva-wallpaper.jpg" alt=""></td>
+                <td><img width="200" style="object-fit: cover; height: 120px;"  class="img-thumbnail"
+                    src="{{url("/storage/photos/$photo->photo_url")}}" alt=""></td>
                 <td>{{$photo->title}}</td>
                 <td>{{$photo->date}}</td>
                 <td>

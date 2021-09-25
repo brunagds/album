@@ -60,7 +60,7 @@ public function showAll(){
       //Define o nome do arquivo com a extensão
       $nomeArquivo = "{$nomeFoto}.{$extensao}";
       //faz o upload
-      $upload = $request->photo->move(public_path('/stored/photos'),$nomeArquivo);
+      $upload = $request->photo->move(public_path('/storage/photos'),$nomeArquivo);
       //Adicinando o nome do arquivo ao atributo photo_url
       $photo->photo_url = $nomeArquivo;
     }

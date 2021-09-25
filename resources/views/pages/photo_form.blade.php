@@ -30,9 +30,9 @@
                   <div class="d-flex flex-column h-100">
                     <div
                       class="miniatura img-thumbnail d-flex flex-column justify-content-center align-items-center h-100 mt-4">
-
-                      <img id="imgPrev" class="img-fluid"
-                        src="https://www.osmais.com/wallpapers/201209/dia-de-chuva-wallpaper.jpg" />
+                      <img id="imgPrev" height="340"
+                       class="w-100" style="object-fit: cover;"
+                        src="{{asset('/img/img_padrao.png')}}" />
                     </div>
                     <div class="form-group mt-2">
                       <div class="custom-file"> <input id="photo" name="photo" type="file" class="custom-file-input"
@@ -74,19 +74,7 @@
   </div><!-- fim da row -->
 </div><!-- fim da container-->
 
-
-
-<script>  function loadFile(event){
-  //variável que recebe o elemento img
-  var imgPrev = document.getElementById('imgPrev')
-
-  //link para a imagem
-  var url = URL.createObjectURL(event.target.files[0])
-
-  //altera a propriedade src para o link da imagem
-  imgPrev.style.background = "url("+url+") no-repeat center"
-  imgPrev.style.backgroundSize = "cover"
-  }
-</script>
+<!-- Script personalizado -->
+<script src="{{asset('/js/script.js')}}"></script>
 
 @endsection
