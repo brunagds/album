@@ -24,19 +24,31 @@
               </tr>
             </thead>
             <tbody>
+              @if ($photos->isEmpty())
+              <tr>
+                <td colspan="5" class="p-5">
+                  <h1 class="display-6 text-secondary">
+                    <i class="far fa-frown"></i>
+                    Nenhuma foto cadastrada
+                  </h1>
+                </td>
+              </tr>
+
+              @endif
               @foreach ($photos as $photo)
               <tr>
                 <td>{{$photo->id}}</td>
-                <td><img width="200" style="object-fit: cover; height: 120px;"  class="img-thumbnail"
-                    src="{{url("/storage/photos/$photo->photo_url")}}" alt=""></td>
+                <td><img width="200" style="object-fit: cover; height: 120px;" class="img-thumbnail" src="{{url("
+                    /storage/photos/$photo->photo_url")}}" alt=""></td>
                 <td>{{$photo->title}}</td>
                 <td>{{$photo->date}}</td>
                 <td>
                   <a href="/photos/edit/{{$photo->id}}" class="btn btn-secondary">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-photo-id="{{$photo->id}}">
-                  <i class="fas fa-trash-alt"></i>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                    data-bs-target="#confirmationModal" data-photo-id="{{$photo->id}}">
+                    <i class="fas fa-trash-alt"></i>
                   </button>
 
                 </td>
@@ -62,10 +74,10 @@
         <h5 class="modal-title" id="exampleModalLabel">Atenção</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        <div class="modal-body">
-          Deseja realmente excluir essa foto?
-        </div>
-        <div class="modal-footer">
+      <div class="modal-body">
+        Deseja realmente excluir essa foto?
+      </div>
+      <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar
         </button>
@@ -77,7 +89,8 @@
       </div>
     </div>
   </div>
-</div> <!--Fim do modal -->
+</div>
+<!--Fim do modal -->
 
 <!-- Script personalizado -->
 <script src="{{asset('/js/script.js')}}"></script>
